@@ -8,7 +8,7 @@ import sys
 
 def merge(in_dir, output, caption_row, data_row):
   is_first = True
-  startrow = 0 #help to implement append excel with startrow
+  startrow = 0 #help to implement append excel with startrow, https://blog.csdn.net/weixin_42575020/article/details/96968788
   with pandas.ExcelWriter(output) as writer:
     for i in os.listdir(in_dir):
       if (not i.endswith(common.SUFFIX_XLS)) and (not i.endswith(common.SUFFIX_XLSX)):
