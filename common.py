@@ -2,7 +2,7 @@
 #constants and util functions shared by all
 import datetime
 import re
-import xlrd
+#import xlrd
 import os
 import shutil
 from time import sleep
