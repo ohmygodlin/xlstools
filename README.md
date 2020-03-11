@@ -28,3 +28,11 @@ python ./merge.py input
 ```
 
 参数1：需要合并表存放的目录。默认输出为当前`out.xlsx`，如果需要更改输出文件，指定`-o out_xxxxx.xlsx`，注意：必须是`xlsx`后缀。
+
+#### 功能4：模糊查找
+
+```
+python3 ./extract3.py input [-s Sheet2] [-k keyword1|keyword2]
+```
+
+参数1：需要查找表存放的目录。`-s Sheet2`指定查找的sheet名，留空则查找所有sheet。`-k keyword1|keyword2`模糊查找的关键字，正则表达式形式表示。
