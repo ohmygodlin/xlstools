@@ -4,19 +4,28 @@ import pandas
 import os
 import timeit
 
-def extract_one(in_df, keywords, writer, sheet, startrow):
+OUT_SHEET = 'Sheet1'
+
+def filter_keyword(in_df, keywords):
+  if keywords is None:
+    return in_df
+
   out_df = pandas.DataFrame(columns=in_df.columns)
   for index, row in in_df.iterrows():
     if row.astype(str).str.contains(keywords).sum() >= 1:
       out_df = out_df.append(row, ignore_index=True)
-  
-  if out_df.empty:
+
+  return out_df
+
+def extract_one(df, keywords, writer, sheet, startrow):
+  df = filter_keyword(df, keywords)
+  if df.empty:
     return startrow
   
   is_first = (startrow==0)
-  out_df.to_excel(writer, sheet_name=sheet if sheet is not None else 'Sheet1', header=is_first, index=False, startrow=startrow)
+  df.to_excel(writer, sheet_name=sheet if sheet is not None else OUT_SHEET, header=is_first, index=False, startrow=startrow)
   
-  startrow += out_df.shape[0]
+  startrow += df.shape[0]
   if is_first:
     startrow += 1
   return startrow
